@@ -1,1 +1,35 @@
-okok
+# The Analysis
+
+## 1. What are the most demanded skills for the top 3 most popular data roles?
+
+To find the most demanded skills for the top 3 most popular data roles. I filtered out those positions by which ones were the most popular, and got the top 5 skills for these top 3 roles. This query highlights the most popular job titles and their top skills, showing which skills I should pay attention to depending on the role I'm targeting.
+
+View my notebook with detailed steps here:
+[2_Skill_Demand.ipynb](1_Skills_Demand.ipynb)
+
+### Visualize Data
+
+```python
+fig, ax = plt.subplots(len(job_titles), 1)
+
+for i, job_title in enumerate(job_titles):
+    df_plot = df_skills_count[df_skills_count['job_title_short'] == job_title].head(5)
+    df_plot.plot(kind = 'barh', x = 'job_skills', y = 'skill_count', ax = ax[i], title = job_title)
+    ax[i].invert_yaxis()
+    ax[i].set_ylabel('')
+    ax[i].legend().set_visible(False)
+```
+### Results
+
+![Visualization of TOP Skills for Data Nerds](images\skill_demand_of_top_data_roles.png)
+
+### Insights
+
+- Data Scientist roles have the highest demand for Python at 72%.
+- SQL demand is strongest in Data Engineer postings at 68%.
+- Data Analysts rely heavily on SQL (51%) and Excel (41%).
+- AWS appears prominently only in Data Engineer roles (43%).
+- Azure and Spark are tied at 32% for Data Engineers.
+- R is a major requirement for Data Scientists (44%) but not shown for other roles.
+- Tableau demand is highest for Data Analysts (28%) and lower for Data Scientists (24%).
+- SAS demand is relatively low across all roles, highest in Data Scientists at 24%.
