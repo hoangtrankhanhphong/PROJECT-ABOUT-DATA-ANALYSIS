@@ -33,3 +33,37 @@ for i, job_title in enumerate(job_titles):
 - R is a major requirement for Data Scientists (44%) but not shown for other roles.
 - Tableau demand is highest for Data Analysts (28%) and lower for Data Scientists (24%).
 - SAS demand is relatively low across all roles, highest in Data Scientists at 24%.
+
+## 2. How are in-demand skills trending for Data Analysts?
+
+### Visualize Data
+
+```python
+sns.lineplot(data = skills_percent, dashes = False, palette='tab10')
+sns.set_theme(style='ticks')
+sns.despine()
+plt.title('Trending Top Skills for DA in the US')
+plt.ylabel('Likelihood in Job Posting')
+plt.xlabel('2023')
+from matplotlib.ticker import PercentFormatter, FuncFormatter
+ax = plt.gca()
+ax.yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
+plt.legend().remove()
+
+for i in range(4):
+    plt.text(11.5, skills_percent.iloc[-1, i], f'{skills_percent.columns[i].replace('_percent','')}')
+plt.show()
+```
+
+### Results
+
+![Trending Top Skills for Data Analysts in the US](images\skills_trend.png)
+
+*Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
+
+### Insights:
+
+- SQL remains the most consistently demanded skill throughout the year, although it shows a gradual decrease in demand.
+- Excel experienced a significant increase in demand starting around September, surpassing both Python and Tableau by the end of the year.
+- Both Python and Tableau show relatively stable demand throughout the year with some fluctuations but remain essential skills for data analysts.
+- Power BI, while less demanded compared to the others, shows a slight upward trend towards the year's end.
